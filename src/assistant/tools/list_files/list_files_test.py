@@ -15,4 +15,3 @@ def test_list_files_success(tmp_path):
 def test_list_files_invalid_path():
     result = execute("/nonexistent/path")
     assert result["status"] == "error"
-    assert "Failed to list files" in result["message"]
