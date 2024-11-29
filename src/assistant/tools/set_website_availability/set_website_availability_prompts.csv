@@ -1,0 +1,3 @@
+prompt, intended_action, intended_tool_name, intended_params
+"Turn my website offline", "tool_call", "set_website_availability", "{}"
+"Turn my website off until the end of time", "rejection", , 

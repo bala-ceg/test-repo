@@ -1,0 +1,70 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Assistant - Up",
+            "type": "shell",
+            "command": "docker-compose -f docker-compose.yml up --build  --remove-orphans -d",
+            // "command": "docker-compose -f docker-compose.yml up --build --force-recreate --remove-orphans -d",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Assistant - Down",
+            "type": "shell",
+            "command": "docker-compose -f docker-compose.yml down",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Assistant - Logs",
+            "type": "shell",
+            "command": "docker-compose -f docker-compose.yml logs -f",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Assistant - Restart",
+            "type": "shell",
+            "command": "docker-compose -f docker-compose.yml restart",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Assistant - cURL /health-check/server",
+            "type": "shell",
+            "command": "curl -X GET http://127.0.0.1:8000/health-check/server",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Assistant - cURL /command/execute post request payload {'command': 'test'}",
+            "type": "shell",
+            "command": "curl -X POST http://127.0.0.1:8000/command/execute -H \"Content-Type: application/json\" -d '{\"command\": \"test\"}'",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+
+        },
+        {
+            "label": "Assistant - cURL /health-check/datastore",
+            "type": "shell",
+            "command": "curl -X GET http://localhost:8000/health-check/datastore",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+    ]
+}

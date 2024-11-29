@@ -1,0 +1,24 @@
+# Ignore Python bytecode directories globally
+__pycache__/
+
+# Ignore pytest cache
+.pytest_cache/
+
+
+# For tools subdirectories, you can ignore specific types if needed globally
+tools/*/__pycache__/
+
+.conda
+
+# Ignore pytest report
+pytest_report.html
+
+# Environment variables file, copy .env.example to .env and add your environment variables `$ cp .env.example .env`
+.env
+
+# Ignore .DS_Store files
+.DS_Store
+
+# Ignore awssam
+.aws-sam/
+

@@ -1,0 +1,31 @@
+# Start from a slim Python base image
+FROM python:3.10-slim
+
+# Prevent Python from writing bytecode (.pyc) files
+ENV PYTHONDONTWRITEBYTECODE 1
+# Ensure Python prints output directly to terminal
+ENV PYTHONUNBUFFERED 1
+# Set timezone to UTC
+ENV TZ=UTC
+
+# Set the working directory within the Docker container
+WORKDIR /app
+
+# Install dependencies
+COPY ./src/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install debugpy for debugging
+RUN pip install debugpy
+
+# Copy your application code and other necessary files
+COPY ./src .
+# COPY .env .
+
+# Expose port 8000 for the application and 5678 for debugpy
+EXPOSE 8000 5678
+
+
+# Modify the command to start the application with debugpy
+# debugpy listens on port 5678 and waits for a client to connect before continuing
+CMD ["python", "-m", "debugpy", "--listen", "127.0.0.1:5678", "--wait-for-client", "-m", "uvicorn", "api:app", "--host", "127.0.0.1", "--port", "8000", "--no-server-header"]

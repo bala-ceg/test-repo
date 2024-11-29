@@ -1,0 +1,7 @@
+__pycache__/
+.conda
+.pytest_cache/
+tools/*/__pycache__/
+tools/*/tests/
+README.md
+release_notes.md

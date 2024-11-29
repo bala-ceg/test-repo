@@ -1,0 +1,36 @@
+version: '3'
+services:
+  assistant:
+    image: assistant:latest
+    networks:
+      - my-assistant-network # Ensure this matches the network name defined below
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - "8000:8000"
+      - "5678:5678" # Debug port
+    volumes:
+      - ./src:/app/src
+      - ./.env:/app/.env
+      - ./src/requirements.txt:/app/requirements.txt
+    environment:
+      - ASSISTANT_VERSION
+      - ASSISTANT_TOOLS_PATH
+      - ASSISTANT_GPT_MODEL
+      - ASSISTANT_OPENAI_API_KEY
+      - ASSISTANT_REDIS_HOST=redis # Ensure this matches the service name of your Redis container
+      - ASSISTANT_REDIS_PORT=6379
+      - ASSISTANT_REDIS_DB
+      - TOOLS_BASE_URL
+  redis:
+    image: redis:latest
+    networks:
+      - my-assistant-network # This matches the network name
+    ports:
+      - "6379:6379"
+
+networks:
+  my-assistant-network: # Corrected network name to match the references in services
+    name: my-assistant-network
+    driver: bridge

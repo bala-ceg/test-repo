@@ -1,0 +1,11 @@
+requests
+openai
+fastapi
+uvicorn
+pydantic
+PyJWT
+python-dotenv
+redis
+python-multipart
+pytest
+pandas

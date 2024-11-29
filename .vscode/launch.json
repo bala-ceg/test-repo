@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Docker: Assistant",
+            "type": "debugpy",
+            "request": "attach",
+            // "preLaunchTask": "Build and Run: Docker",
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/src",
+                    "remoteRoot": "/app/src"
+                }
+            ],
+            "justMyCode": true,
+            // Add task to launch.json
+            "preLaunchTask": "Assistant - Up",
+            "postDebugTask": "Assistant - Down",
+            // Actively tail output from the Docker container
+            
+            // connect after launch
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            }
+
+        }
+    ]
+}
